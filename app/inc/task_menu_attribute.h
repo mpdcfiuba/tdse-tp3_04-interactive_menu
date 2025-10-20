@@ -72,8 +72,43 @@ typedef enum task_menu_ev {EV_MEN_ENT_IDLE,
 						   EV_MEN_ESC_ACTIVE} task_menu_ev_t;
 
 /* State of Task Menu */
-typedef enum task_menu_st {ST_MEN_XX_IDLE,
-						   ST_MEN_XX_ACTIVE} task_menu_st_t;
+typedef enum task_menu_st {ST_MEN_XX_MAIN,
+						   ST_MEN_XX_MOTOR_1,
+						   ST_MEN_XX_MOTOR_2,
+						   ST_MEN_XX_POWER_1,
+						   ST_MEN_XX_POWER_2,
+						   ST_MEN_XX_SPEED_1,
+						   ST_MEN_XX_SPEED_2,
+						   ST_MEN_XX_SPIN_1,
+						   ST_MEN_XX_SPIN_2,
+						   ST_MEN_XX_POWER_1_ON,
+						   ST_MEN_XX_POWER_1_OFF,
+						   ST_MEN_XX_POWER_2_ON,
+						   ST_MEN_XX_POWER_2_OFF,
+						   ST_MEN_XX_SPIN_1_L,
+						   ST_MEN_XX_SPIN_1_R,
+						   ST_MEN_XX_SPIN_2_L,
+						   ST_MEN_XX_SPIN_2_R,
+						   ST_MEN_XX_SPEED_1_0,
+						   ST_MEN_XX_SPEED_1_1,
+						   ST_MEN_XX_SPEED_1_2,
+						   ST_MEN_XX_SPEED_1_3,
+						   ST_MEN_XX_SPEED_1_4,
+						   ST_MEN_XX_SPEED_1_5,
+						   ST_MEN_XX_SPEED_1_6,
+						   ST_MEN_XX_SPEED_1_7,
+						   ST_MEN_XX_SPEED_1_8,
+						   ST_MEN_XX_SPEED_1_9,
+						   ST_MEN_XX_SPEED_2_0,
+						   ST_MEN_XX_SPEED_2_1,
+						   ST_MEN_XX_SPEED_2_2,
+						   ST_MEN_XX_SPEED_2_3,
+						   ST_MEN_XX_SPEED_2_4,
+						   ST_MEN_XX_SPEED_2_5,
+						   ST_MEN_XX_SPEED_2_6,
+						   ST_MEN_XX_SPEED_2_7,
+						   ST_MEN_XX_SPEED_2_8,
+						   ST_MEN_XX_SPEED_2_9} task_menu_st_t;
 
 typedef struct
 {
@@ -81,10 +116,21 @@ typedef struct
 	task_menu_st_t	state;
 	task_menu_ev_t	event;
 	bool			flag;
+	bool			flag_lcd;
 } task_menu_dta_t;
+
+typedef struct
+{
+	bool			power; //on = true
+	bool			spin; //right = true
+	uint32_t		speed; //0 to 9
+} motor_dta_t;
+
+
 
 /********************** external data declaration ****************************/
 extern task_menu_dta_t task_menu_dta;
+extern motor_dta_t	motor_dta_list[];
 
 /********************** external functions declaration ***********************/
 
