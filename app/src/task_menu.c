@@ -201,11 +201,6 @@ void task_menu_statechart(void)
 	{
 		case ST_MEN_XX_MAIN:
 
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
-
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
 				p_task_menu_dta->state = ST_MEN_XX_MOTOR_1;
@@ -215,28 +210,26 @@ void task_menu_statechart(void)
 			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_1, sizeof(menu_str_1), "Motor 1: %s, %lu, %s", (motor_dta_list[0].power ? "ON" : "OFF"),
-						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "R" : "L"));
+						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 0);
 				displayStringWrite(menu_str_1);
 
 				snprintf(menu_str_2, sizeof(menu_str_2), "Motor 2: %s, %lu, %s", (motor_dta_list[1].power ? "ON" : "OFF"),
-						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "R" : "L"));
+						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 1);
 				displayStringWrite(menu_str_2);
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter/Next/Escape");
+				displayStringWrite("Enter/Next/Escape   ");
+
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("                    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
 			break;
 
 		case ST_MEN_XX_MOTOR_1:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -259,18 +252,18 @@ void task_menu_statechart(void)
 			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_1, sizeof(menu_str_1), "Motor 1: %s, %lu, %s", (motor_dta_list[0].power ? "ON" : "OFF"),
-						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "R" : "L"));
+						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 0);
 				displayStringWrite(menu_str_1);
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Motor 2");
+				displayStringWrite("Next -> Motor 2     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to edit");
+				displayStringWrite("Enter to edit       ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -278,11 +271,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_POWER_1:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -302,21 +290,21 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_1, sizeof(menu_str_1), "Motor 1: %s, %lu, %s", (motor_dta_list[0].power ? "ON" : "OFF"),
-						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "R" : "L"));
+						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 0);
 				displayStringWrite(menu_str_1);
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Spin");
+				displayStringWrite("Power |Next -> Spin ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to edit");
+				displayStringWrite("Enter to edit       ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -324,11 +312,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPIN_1:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -348,21 +331,21 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_1, sizeof(menu_str_1), "Motor 1: %s, %lu, %s", (motor_dta_list[0].power ? "ON" : "OFF"),
-						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "R" : "L"));
+						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 0);
 				displayStringWrite(menu_str_1);
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed");
+				displayStringWrite("Spin |Next -> Speed ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to edit");
+				displayStringWrite("Enter to edit       ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -370,11 +353,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -394,21 +372,21 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_1, sizeof(menu_str_1), "Motor 1: %s, %lu, %s", (motor_dta_list[0].power ? "ON" : "OFF"),
-						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "R" : "L"));
+						motor_dta_list[0].speed , (motor_dta_list[0].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 0);
 				displayStringWrite(menu_str_1);
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Power");
+				displayStringWrite("Speed |Next -> Power");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to edit");
+				displayStringWrite("Enter to edit       ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -416,11 +394,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_POWER_1_ON:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -441,19 +414,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Turn ON");
+				displayStringWrite("Motor 1: Turn ON    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> OFF");
+				displayStringWrite("Next -> Turn OFF    ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -461,11 +434,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_POWER_1_OFF:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -486,19 +454,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Turn OFF");
+				displayStringWrite("Motor 1: Turn OFF   ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> ON");
+				displayStringWrite("Next -> Turn ON     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -506,11 +474,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPIN_1_L:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -531,19 +494,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Right");
+				displayStringWrite("Motor 1: Right      ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Left");
+				displayStringWrite("Next -> Left        ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -551,12 +514,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPIN_1_R:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-				p_task_menu_dta->flag = false;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -577,19 +534,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Left");
+				displayStringWrite("Motor 1: Left       ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Right");
+				displayStringWrite("Next -> Right       ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -597,11 +554,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_0:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -622,19 +574,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 0");
+				displayStringWrite("Motor 1: Speed 0    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 1");
+				displayStringWrite("Next -> Speed 1     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -642,11 +594,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_1:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -667,19 +614,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 1");
+				displayStringWrite("Motor 1: Speed 1    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 2");
+				displayStringWrite("Next -> Speed 2     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -687,11 +634,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_2:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -712,19 +654,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 2");
+				displayStringWrite("Motor 1: Speed 2    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 3");
+				displayStringWrite("Next -> Speed 3     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -732,11 +674,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_3:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -757,19 +694,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 3");
+				displayStringWrite("Motor 1: Speed 3    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 4");
+				displayStringWrite("Next -> Speed 4     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -777,11 +714,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_4:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -802,19 +734,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 4");
+				displayStringWrite("Motor 1: Speed 4    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 5");
+				displayStringWrite("Next -> Speed 5     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -822,11 +754,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_5:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -847,19 +774,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 5");
+				displayStringWrite("Motor 1: Speed 5    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 6");
+				displayStringWrite("Next -> Speed 6     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -867,11 +794,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_6:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -892,19 +814,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 6");
+				displayStringWrite("Motor 1: Speed 6    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 7");
+				displayStringWrite("Next -> Speed 7     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -912,11 +834,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_7:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -937,19 +854,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 7");
+				displayStringWrite("Motor 1: Speed 7    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 8");
+				displayStringWrite("Next -> Speed 8     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -957,11 +874,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_8:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -982,19 +894,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 8");
+				displayStringWrite("Motor 1: Speed 8    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 9");
+				displayStringWrite("Next -> Speed 9     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1002,11 +914,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_1_9:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1027,19 +934,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 1: Speed 9");
+				displayStringWrite("Motor 1: Speed 9    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 0");
+				displayStringWrite("Next -> Speed 0     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1047,11 +954,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_MOTOR_2:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1074,18 +976,18 @@ void task_menu_statechart(void)
 			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_2, sizeof(menu_str_2), "Motor 2: %s, %lu, %s", (motor_dta_list[1].power ? "ON" : "OFF"),
-						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "R" : "L"));
+						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 0);
 				displayStringWrite(menu_str_2);
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Motor 1");
+				displayStringWrite("Next -> Motor 1     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to edit");
+				displayStringWrite("Enter to edit       ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1093,11 +995,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_POWER_2:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1117,21 +1014,21 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_2, sizeof(menu_str_2), "Motor 2: %s, %lu, %s", (motor_dta_list[1].power ? "ON" : "OFF"),
-						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "R" : "L"));
+						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 0);
 				displayStringWrite(menu_str_2);
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Spin");
+				displayStringWrite("Power |Next -> Spin ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to edit");
+				displayStringWrite("Enter to edit       ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1139,11 +1036,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPIN_2:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1163,21 +1055,21 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_2, sizeof(menu_str_2), "Motor 2: %s, %lu, %s", (motor_dta_list[1].power ? "ON" : "OFF"),
-						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "R" : "L"));
+						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "L" : "R"));
 				displayCharPositionWrite(0, 0);
 				displayStringWrite(menu_str_2);
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed");
+				displayStringWrite("Spin |Next -> Speed ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to edit");
+				displayStringWrite("Enter to edit       ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1185,11 +1077,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1209,7 +1096,7 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				snprintf(menu_str_2, sizeof(menu_str_2), "Motor 2: %s, %lu, %s", (motor_dta_list[1].power ? "ON" : "OFF"),
 						motor_dta_list[1].speed , (motor_dta_list[1].spin ? "R" : "L"));
@@ -1217,13 +1104,13 @@ void task_menu_statechart(void)
 				displayStringWrite(menu_str_2);
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Power");
+				displayStringWrite("Speed |Next -> Power");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to edit");
+				displayStringWrite("Enter to edit       ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1231,11 +1118,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_POWER_2_ON:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1256,19 +1138,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Turn ON");
+				displayStringWrite("Motor 2: Turn ON    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> OFF");
+				displayStringWrite("Next -> Turn OFF    ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1276,11 +1158,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_POWER_2_OFF:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1301,19 +1178,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Turn OFF");
+				displayStringWrite("Motor 2: Turn OFF   ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> ON");
+				displayStringWrite("Next -> Turn ON     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1321,11 +1198,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPIN_2_L:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1346,19 +1218,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Right");
+				displayStringWrite("Motor 2: Right      ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Left");
+				displayStringWrite("Next -> Left        ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1366,12 +1238,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPIN_2_R:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-				p_task_menu_dta->flag = false;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1392,19 +1258,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Left");
+				displayStringWrite("Motor 2: Left       ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Right");
+				displayStringWrite("Next -> Right       ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1412,11 +1278,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_0:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1437,19 +1298,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 0");
+				displayStringWrite("Motor 2: Speed 0    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 1");
+				displayStringWrite("Next -> Speed 1     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1457,11 +1318,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_1:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1482,19 +1338,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 1");
+				displayStringWrite("Motor 2: Speed 1    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 2");
+				displayStringWrite("Next -> Speed 2     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1502,11 +1358,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_2:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1527,19 +1378,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 2");
+				displayStringWrite("Motor 2: Speed 2    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 3");
+				displayStringWrite("Next -> Speed 3     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1547,11 +1398,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_3:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1572,19 +1418,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 3");
+				displayStringWrite("Motor 2: Speed 3    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 4");
+				displayStringWrite("Next -> Speed 4     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1592,11 +1438,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_4:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1617,19 +1458,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 4");
+				displayStringWrite("Motor 2: Speed 4    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 5");
+				displayStringWrite("Next -> Speed 5     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1637,11 +1478,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_5:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1662,19 +1498,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 5");
+				displayStringWrite("Motor 2: Speed 5    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 6");
+				displayStringWrite("Next -> Speed 6     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1682,11 +1518,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_6:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1707,19 +1538,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 6");
+				displayStringWrite("Motor 2: Speed 6    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 7");
+				displayStringWrite("Next -> Speed 7     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1727,11 +1558,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_7:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1752,19 +1578,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 7");
+				displayStringWrite("Motor 2: Speed 7    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 8");
+				displayStringWrite("Next -> Speed 8     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1772,11 +1598,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_8:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1797,19 +1618,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 8");
+				displayStringWrite("Motor 2: Speed 8    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 9");
+				displayStringWrite("Next -> Speed 9     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
@@ -1817,11 +1638,6 @@ void task_menu_statechart(void)
 			break;
 
 		case ST_MEN_XX_SPEED_2_9:
-
-			if (true == p_task_menu_dta->flag)
-			{
-				p_task_menu_dta->flag_lcd = true;
-			}
 
 			if ((true == p_task_menu_dta->flag) && (EV_MEN_ENT_ACTIVE == p_task_menu_dta->event))
 			{
@@ -1842,19 +1658,19 @@ void task_menu_statechart(void)
 				p_task_menu_dta->flag = false;
 			}
 
-			if ((true == p_task_menu_dta->flag))
+			if (true == p_task_menu_dta->flag_lcd)
 			{
 				displayCharPositionWrite(0, 0);
-				displayStringWrite("Motor 2: Speed 9");
+				displayStringWrite("Motor 2: Speed 9    ");
 
 				displayCharPositionWrite(0, 1);
-				displayStringWrite("Next -> Speed 0");
+				displayStringWrite("Next -> Speed 0     ");
 
 				displayCharPositionWrite(0, 2);
-				displayStringWrite("Enter to set");
+				displayStringWrite("Enter to set        ");
 
-				displayCharPositionWrite(0, 2);
-				displayStringWrite("Escape to return");
+				displayCharPositionWrite(0, 3);
+				displayStringWrite("Escape to return    ");
 
 				p_task_menu_dta->flag_lcd = false;
 			}
